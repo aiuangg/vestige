@@ -1,0 +1,20 @@
+services:
+  - type: web
+    name: vestige
+    runtime: python
+    region: singapore
+    plan: starter
+    healthCheckPath: /
+    buildCommand: pip install -r requirements.txt
+    startCommand: python app.py
+    envVars:
+      - key: HOST
+        value: 0.0.0.0
+      - key: COOKIE_SECURE
+        value: "1"
+      - key: VESTIGE_DATA_DIR
+        value: /var/data
+    disk:
+      name: vestige-data
+      mountPath: /var/data
+      sizeGB: 1
